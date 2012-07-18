@@ -35,19 +35,19 @@ module RubySpamAssassin
     end
 
     def send_symbol(message)
-      protocol_repsonse = send_message("SYMBOLS", message)
-      result = process_headers(SpamResult.new, protocol_repsonse[0...2])
-      result.tags = protocol_repsonse[3...-1].join(" ").split(',')
+      protocol_response = send_message("SYMBOLS", message)
+      result = process_headers(SpamResult.new, protocol_response[0...2])
+      result.tags = protocol_response[3...-1].join(" ").split(',')
     end
 
     def check(message)
-      protocol_repsonse = send_message("CHECK", message)
-      result = process_headers(SpamResult.new, protocol_repsonse[0...2])
+      protocol_response = send_message("CHECK", message)
+      result = process_headers(SpamResult.new, protocol_response[0...2])
     end
 
     def report(message)
       protocol_response = send_message("REPORT", message)
-      result = process_headers(SpamResult.new, protocol_repsonse[0...2])
+      result = process_headers(SpamResult.new, protocol_response[0...2])
       result.report = protocol_response[3..-1].join
     end
 
@@ -61,7 +61,7 @@ module RubySpamAssassin
 
     def ping
       protocol_response = send_message("PING", message)
-      result = process_headers(SpamResult.new, protocol_repsonse[0])
+      result = process_headers(SpamResult.new, protocol_response[0])
     end
 
     alias :process :report
