@@ -27,11 +27,11 @@ module RubySpamAssassin
       @port = port
       @host = host
       @timeout =timeout
-      @socket = TCPsocket.open(@host, @port)
+      @socket = TCPSocket.open(@host, @port)
     end
 
     def reconnect
-      @socket = @socket || TCPsocket.open(@host, @port)
+      @socket = @socket || TCPSocket.open(@host, @port)
     end
 
     def send_symbol(message)
